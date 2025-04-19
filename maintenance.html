@@ -13,50 +13,172 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: url("https://via.placeholder.com/1500x1000") no-repeat
-          center center fixed;
-        background-size: cover;
+        background: linear-gradient(
+          to right,
+          #ff7e5f,
+          #feb47b
+        ); /* Gradient background */
+        color: white;
+        overflow: hidden;
       }
 
       .maintenance-container {
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.6);
-        color: white;
-        padding: 50px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 40px 60px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        width: 80%;
+        max-width: 700px;
+        transition: transform 0.5s ease;
+      }
+
+      .maintenance-container:hover {
+        transform: scale(1.05); /* Subtle scale effect when hovering */
       }
 
       h1 {
         font-size: 3em;
         margin-bottom: 20px;
+        font-weight: 600;
       }
 
       p {
-        font-size: 1.2em;
+        font-size: 1.3em;
         margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      .cta-button {
+        background-color: #ffcc00;
+        color: #333;
+        font-size: 1.2em;
+        padding: 15px 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 20px 0;
+        transition: background-color 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #e6b800; /* Darker shade on hover */
+      }
+
+      .social-links {
+        font-size: 1.5em;
+        margin-top: 30px;
+      }
+
+      .social-links a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+      }
+
+      .social-links a:hover {
+        transform: scale(1.2); /* Hover effect for social icons */
       }
 
       .footer {
         position: absolute;
-        bottom: 20px;
+        bottom: 30px;
         width: 100%;
         text-align: center;
         font-size: 1em;
         color: white;
       }
+
+      /* Countdown timer styles */
+      .countdown {
+        font-size: 2em;
+        font-weight: 700;
+        color: #ffcc00;
+        margin-top: 40px;
+      }
     </style>
   </head>
   <body>
     <div class="maintenance-container">
-      <h1>Site en Maintenance</h1>
+      <h1>🚧 Site en Maintenance 🚧</h1>
       <p>
-        Notre site est actuellement en maintenance. Il sera disponible très
-        bientôt. Merci pour votre patience !
+        Nous améliorons notre site pour mieux vous servir avec de nouvelles
+        fonctionnalités passionnantes et des améliorations de sécurité !
       </p>
+      <p>
+        <strong
+          >Le site sera de retour dans <span id="weeks">2</span> semaines. Merci
+          de votre patience !</strong
+        >
+      </p>
+
+      <!-- Countdown timer (Optional) -->
+      <div class="countdown" id="countdown"></div>
+
+      <p>En attendant, restez connectés avec nous sur nos réseaux sociaux :</p>
+
+      <div class="social-links">
+        <a
+          href="https://www.facebook.com/profile.php?id=61560290895877"
+          target="_blank"
+          >Facebook</a
+        >
+        |
+        <a href="https://www.tiktok.com/@DiasporaUnie" target="_blank"
+          >TikTok</a
+        >
+        |
+        <a href="https://www.youtube.com/c/DiasporaUnie" target="_blank"
+          >YouTube</a
+        >
+      </div>
+
+      <!-- Call-to-action Button -->
+      <a
+        href="https://www.facebook.com/profile.php?id=61560290895877"
+        target="_blank"
+        class="cta-button"
+        >Rejoignez-nous sur Facebook</a
+      >
     </div>
+
     <div class="footer">
-      <p>© 2025 MAD Immigration Canadienne</p>
+      <p>© 2025 Diaspora Unie - À très bientôt !</p>
     </div>
+
+    <script>
+      // Countdown Timer JavaScript for a 2-week countdown
+      var countDownDate = new Date().getTime() + 14 * 24 * 60 * 60 * 1000; // 2 weeks from now
+
+      var x = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+          "Retour dans : " +
+          days +
+          "j " +
+          hours +
+          "h " +
+          minutes +
+          "m " +
+          seconds +
+          "s";
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "Site disponible !";
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
